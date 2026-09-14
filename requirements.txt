@@ -1,0 +1,18 @@
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
+# --- TTS (hybrid: local + free cloud + optional paid) ---
+edge-tts>=0.14        # مجاني، بدون مفتاح، عربي ممتاز — المحرك الافتراضي
+gTTS>=2.5             # احتياطي مجاني
+pyttsx3>=2.90         # أوفلاين 100% (جودة أقل للعربي)
+# --- STT (local first) ---
+# faster-whisper ثقيل — اختياري: يتثبت فقط لو عايز أوفلاين
+# faster-whisper>=1.0
+# --- ترجمة للدبلجة ---
+deep-translator>=1.11
+# --- صوتيات ---
+pydub>=0.25
+# --- اختياري (يتفعل لو متثبت عندك) ---
+# openai>=1.0
+# elevenlabs>=1.0
+# TTS>=0.22  (Coqui XTTS للاستنساخ المحلي)

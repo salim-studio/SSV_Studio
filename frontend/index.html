@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSV Studio — Local-first Voice Studio</title>
+<meta name="description" content="SSV Studio: open-source, local-first voice studio. Text-to-speech, voice cloning, transcription, dubbing & audiobooks.">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="brand">
+    <img src="logo.svg" alt="SSV Studio logo" class="logo">
+    <div>
+      <h1>SSV <span>Studio</span></h1>
+      <p class="tagline">Local-first voice studio — synthesize, clone, transcribe, dub.</p>
+    </div>
+  </div>
+  <div id="engines" class="pills"><span class="pill dim">Checking engines…</span></div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button data-tab="tts" class="active" role="tab">Synthesize</button>
+  <button data-tab="clone" role="tab">Clone</button>
+  <button data-tab="stt" role="tab">Transcribe</button>
+  <button data-tab="dub" role="tab">Dub</button>
+  <button data-tab="book" role="tab">Audiobook</button>
+</nav>
+
+<main>
+  <section id="tab-tts" class="card active">
+    <h2>Text to speech</h2>
+    <p class="hint">Type or paste text in Arabic or English, pick a voice, generate.</p>
+    <textarea id="tts-text" rows="5">Welcome to SSV Studio — your local-first voice studio. Type anything and hear it spoken naturally.</textarea>
+    <div class="grid">
+      <label>Voice<select id="tts-voice"></select></label>
+      <label>Engine
+        <select id="tts-engine">
+          <option value="edge">Edge TTS — free, recommended</option>
+          <option value="gtts">gTTS — fallback</option>
+          <option value="pyttsx3">pyttsx3 — fully offline</option>
+          <option value="elevenlabs">ElevenLabs — needs API key</option>
+          <option value="openai">OpenAI — needs API key</option>
+        </select>
+      </label>
+    </div>
+    <button class="primary" onclick="doTTS()">Generate speech</button>
+    <audio id="tts-audio" controls></audio>
+  </section>
+
+  <section id="tab-clone" class="card">
+    <h2>Voice cloning</h2>
+    <p class="hint">Upload a clean 3–15 second clip of a single speaker, then enter the text.</p>
+    <label class="file">Reference voice<input type="file" id="clone-ref" accept="audio/*"></label>
+    <textarea id="clone-text" rows="4" placeholder="Text to speak in the cloned voice…"></textarea>
+    <div class="grid">
+      <label>Language
+        <select id="clone-lang"><option value="ar">Arabic</option><option value="en">English</option></select>
+      </label>
+    </div>
+    <button class="primary" onclick="doClone()">Clone &amp; generate</button>
+    <audio id="clone-audio" controls></audio>
+    <p class="hint small">True local cloning when Coqui XTTS is installed, otherwise the closest matching voice (demo mode). Only clone voices with the speaker's permission.</p>
+  </section>
+
+  <section id="tab-stt" class="card">
+    <h2>Transcription</h2>
+    <p class="hint">Upload audio or video to get text back.</p>
+    <label class="file">Audio / video<input type="file" id="stt-file" accept="audio/*,video/*"></label>
+    <div class="grid">
+      <label>Language
+        <select id="stt-lang"><option value="ar">Arabic</option><option value="en">English</option><option value="auto">Auto</option></select>
+      </label>
+    </div>
+    <button class="primary" onclick="doSTT()">Transcribe</button>
+    <pre id="stt-out" class="output">Transcript will appear here…</pre>
+  </section>
+
+  <section id="tab-dub" class="card">
+    <h2>Video dubbing</h2>
+    <p class="hint">Transcribe → translate → re-voice. Video is re-muxed when ffmpeg is available.</p>
+    <label class="file">Media file<input type="file" id="dub-file" accept="audio/*,video/*"></label>
+    <div class="grid">
+      <label>From<select id="dub-src"><option value="en">English</option><option value="ar">Arabic</option></select></label>
+      <label>To<select id="dub-tgt"><option value="ar">Arabic</option><option value="en">English</option></select></label>
+    </div>
+    <button class="primary" onclick="doDub()">Dub now</button>
+    <pre id="dub-out" class="output">Dubbing result will appear here…</pre>
+    <audio id="dub-audio" controls></audio>
+  </section>
+
+  <section id="tab-book" class="card">
+    <h2>Audiobook</h2>
+    <p class="hint">Paste a chapter or a full short text — it is chunked, voiced and joined.</p>
+    <textarea id="book-text" rows="8" placeholder="Paste your chapter here…"></textarea>
+    <button class="primary" onclick="doBook()">Produce audiobook</button>
+    <audio id="book-audio" controls></audio>
+  </section>
+</main>
+
+<footer>
+  <span>SSV Studio · local-first · your audio never leaves your machine by default</span>
+  <a href="https://github.com/salim-studio/SSV_Studio" target="_blank" rel="noopener">GitHub</a>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
