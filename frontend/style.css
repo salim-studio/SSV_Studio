@@ -51,6 +51,18 @@ body {
 .pill.warn { border-color: #f59e0b88; color: #fcd34d; }
 .pill.dim { color: var(--muted); }
 
+.topbar { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.lang-switch { display: flex; gap: 6px; }
+.lang-switch button {
+  padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  background: var(--panel-2); color: var(--muted);
+  border: 1px solid var(--line); font-weight: 700; font-size: 12px;
+}
+.lang-switch button.active {
+  color: #fff; border-color: transparent;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+}
+
 .tabs {
   max-width: 880px; margin: 10px auto 0; padding: 0 20px;
   display: flex; gap: 8px; flex-wrap: wrap;

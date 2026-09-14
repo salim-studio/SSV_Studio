@@ -16,93 +16,102 @@
     <img src="logo.svg" alt="SSV Studio logo" class="logo">
     <div>
       <h1>SSV <span>Studio</span></h1>
-      <p class="tagline">Local-first voice studio — synthesize, clone, transcribe, dub.</p>
+      <p class="tagline" data-i18n="tagline">Local-first voice studio — synthesize, clone, transcribe, dub.</p>
     </div>
   </div>
-  <div id="engines" class="pills"><span class="pill dim">Checking engines…</span></div>
+  <div class="topbar">
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="ar">AR</button>
+      <button data-lang="fr">FR</button>
+      <button data-lang="es">ES</button>
+      <button data-lang="de">DE</button>
+    </div>
+    <div id="engines" class="pills"><span class="pill dim" data-i18n="pill_checking">Checking engines…</span></div>
+  </div>
 </header>
 
 <nav class="tabs" role="tablist">
-  <button data-tab="tts" class="active" role="tab">Synthesize</button>
-  <button data-tab="clone" role="tab">Clone</button>
-  <button data-tab="stt" role="tab">Transcribe</button>
-  <button data-tab="dub" role="tab">Dub</button>
-  <button data-tab="book" role="tab">Audiobook</button>
+  <button data-tab="tts" class="active" role="tab" data-i18n="tab_tts">Synthesize</button>
+  <button data-tab="clone" role="tab" data-i18n="tab_clone">Clone</button>
+  <button data-tab="stt" role="tab" data-i18n="tab_stt">Transcribe</button>
+  <button data-tab="dub" role="tab" data-i18n="tab_dub">Dub</button>
+  <button data-tab="book" role="tab" data-i18n="tab_book">Audiobook</button>
 </nav>
 
 <main>
   <section id="tab-tts" class="card active">
-    <h2>Text to speech</h2>
-    <p class="hint">Type or paste text in Arabic or English, pick a voice, generate.</p>
+    <h2 data-i18n="tts_h2">Text to speech</h2>
+    <p class="hint" data-i18n="tts_hint">Type or paste text in Arabic or English, pick a voice, generate.</p>
     <textarea id="tts-text" rows="5">Welcome to SSV Studio — your local-first voice studio. Type anything and hear it spoken naturally.</textarea>
     <div class="grid">
-      <label>Voice<select id="tts-voice"></select></label>
-      <label>Engine
+      <label><span data-i18n="lbl_voice">Voice</span><select id="tts-voice"></select></label>
+      <label><span data-i18n="lbl_engine">Engine</span>
         <select id="tts-engine">
-          <option value="edge">Edge TTS — free, recommended</option>
-          <option value="gtts">gTTS — fallback</option>
-          <option value="pyttsx3">pyttsx3 — fully offline</option>
-          <option value="elevenlabs">ElevenLabs — needs API key</option>
-          <option value="openai">OpenAI — needs API key</option>
+          <option value="edge" data-i18n="eng_edge">Edge TTS — free, recommended</option>
+          <option value="gtts" data-i18n="eng_gtts">gTTS — fallback</option>
+          <option value="pyttsx3" data-i18n="eng_local">pyttsx3 — fully offline</option>
+          <option value="elevenlabs" data-i18n="eng_eleven">ElevenLabs — needs API key</option>
+          <option value="openai" data-i18n="eng_openai">OpenAI — needs API key</option>
         </select>
       </label>
     </div>
-    <button class="primary" onclick="doTTS()">Generate speech</button>
+    <button class="primary" onclick="doTTS()" data-i18n="btn_tts">Generate speech</button>
     <audio id="tts-audio" controls></audio>
   </section>
 
   <section id="tab-clone" class="card">
-    <h2>Voice cloning</h2>
-    <p class="hint">Upload a clean 3–15 second clip of a single speaker, then enter the text.</p>
-    <label class="file">Reference voice<input type="file" id="clone-ref" accept="audio/*"></label>
-    <textarea id="clone-text" rows="4" placeholder="Text to speak in the cloned voice…"></textarea>
+    <h2 data-i18n="clone_h2">Voice cloning</h2>
+    <p class="hint" data-i18n="clone_hint">Upload a clean 3–15 second clip of a single speaker, then enter the text.</p>
+    <label class="file"><span data-i18n="lbl_ref">Reference voice</span><input type="file" id="clone-ref" accept="audio/*"></label>
+    <textarea id="clone-text" rows="4" data-i18n-ph="clone_ph" placeholder="Text to speak in the cloned voice…"></textarea>
     <div class="grid">
-      <label>Language
-        <select id="clone-lang"><option value="ar">Arabic</option><option value="en">English</option></select>
+      <label><span data-i18n="lbl_lang">Language</span>
+        <select id="clone-lang"><option value="ar" data-i18n="opt_ar">Arabic</option><option value="en" data-i18n="opt_en">English</option></select>
       </label>
     </div>
-    <button class="primary" onclick="doClone()">Clone &amp; generate</button>
+    <button class="primary" onclick="doClone()" data-i18n="btn_clone">Clone &amp; generate</button>
     <audio id="clone-audio" controls></audio>
-    <p class="hint small">True local cloning when Coqui XTTS is installed, otherwise the closest matching voice (demo mode). Only clone voices with the speaker's permission.</p>
+    <p class="hint small" data-i18n="clone_note">True local cloning when Coqui XTTS is installed, otherwise the closest matching voice (demo mode). Only clone voices with the speaker's permission.</p>
   </section>
 
   <section id="tab-stt" class="card">
-    <h2>Transcription</h2>
-    <p class="hint">Upload audio or video to get text back.</p>
-    <label class="file">Audio / video<input type="file" id="stt-file" accept="audio/*,video/*"></label>
+    <h2 data-i18n="stt_h2">Transcription</h2>
+    <p class="hint" data-i18n="stt_hint">Upload audio or video to get text back.</p>
+    <label class="file"><span data-i18n="lbl_file">Audio / video</span><input type="file" id="stt-file" accept="audio/*,video/*"></label>
     <div class="grid">
-      <label>Language
-        <select id="stt-lang"><option value="ar">Arabic</option><option value="en">English</option><option value="auto">Auto</option></select>
+      <label><span data-i18n="lbl_lang">Language</span>
+        <select id="stt-lang"><option value="ar" data-i18n="opt_ar">Arabic</option><option value="en" data-i18n="opt_en">English</option><option value="auto" data-i18n="opt_auto">Auto</option></select>
       </label>
     </div>
-    <button class="primary" onclick="doSTT()">Transcribe</button>
-    <pre id="stt-out" class="output">Transcript will appear here…</pre>
+    <button class="primary" onclick="doSTT()" data-i18n="btn_stt">Transcribe</button>
+    <pre id="stt-out" class="output" data-i18n="stt_wait">Transcript will appear here…</pre>
   </section>
 
   <section id="tab-dub" class="card">
-    <h2>Video dubbing</h2>
-    <p class="hint">Transcribe → translate → re-voice. Video is re-muxed when ffmpeg is available.</p>
-    <label class="file">Media file<input type="file" id="dub-file" accept="audio/*,video/*"></label>
+    <h2 data-i18n="dub_h2">Video dubbing</h2>
+    <p class="hint" data-i18n="dub_hint">Transcribe → translate → re-voice. Video is re-muxed when ffmpeg is available.</p>
+    <label class="file"><span data-i18n="lbl_media">Media file</span><input type="file" id="dub-file" accept="audio/*,video/*"></label>
     <div class="grid">
-      <label>From<select id="dub-src"><option value="en">English</option><option value="ar">Arabic</option></select></label>
-      <label>To<select id="dub-tgt"><option value="ar">Arabic</option><option value="en">English</option></select></label>
+      <label><span data-i18n="lbl_from">From</span><select id="dub-src"><option value="en" data-i18n="opt_en">English</option><option value="ar" data-i18n="opt_ar">Arabic</option></select></label>
+      <label><span data-i18n="lbl_to">To</span><select id="dub-tgt"><option value="ar" data-i18n="opt_ar">Arabic</option><option value="en" data-i18n="opt_en">English</option></select></label>
     </div>
-    <button class="primary" onclick="doDub()">Dub now</button>
-    <pre id="dub-out" class="output">Dubbing result will appear here…</pre>
+    <button class="primary" onclick="doDub()" data-i18n="btn_dub">Dub now</button>
+    <pre id="dub-out" class="output" data-i18n="dub_wait">Dubbing result will appear here…</pre>
     <audio id="dub-audio" controls></audio>
   </section>
 
   <section id="tab-book" class="card">
-    <h2>Audiobook</h2>
-    <p class="hint">Paste a chapter or a full short text — it is chunked, voiced and joined.</p>
-    <textarea id="book-text" rows="8" placeholder="Paste your chapter here…"></textarea>
-    <button class="primary" onclick="doBook()">Produce audiobook</button>
+    <h2 data-i18n="book_h2">Audiobook</h2>
+    <p class="hint" data-i18n="book_hint">Paste a chapter or a full short text — it is chunked, voiced and joined.</p>
+    <textarea id="book-text" rows="8" data-i18n-ph="book_ph" placeholder="Paste your chapter here…"></textarea>
+    <button class="primary" onclick="doBook()" data-i18n="btn_book">Produce audiobook</button>
     <audio id="book-audio" controls></audio>
   </section>
 </main>
 
 <footer>
-  <span>SSV Studio · local-first · your audio never leaves your machine by default</span>
+  <span>© 2026 Copyright salim-slimani</span>
   <a href="https://github.com/salim-studio/SSV_Studio" target="_blank" rel="noopener">GitHub</a>
 </footer>
 

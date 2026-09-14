@@ -23,7 +23,7 @@ No account. No API key. No subscription for the local workflow.
 | 📝 **Transcription** | Local `faster-whisper` (optional) or OpenAI Whisper, with segments + timestamps |
 | 🎬 **Video dubbing** | Transcribe → translate → re-voice → re-mux with ffmpeg |
 | 📚 **Audiobooks** | Long text chunked, voiced and joined into one file |
-| 🌐 **Web UI** | Modern dark studio console, Arabic + English |
+| 🌐 **Web UI** | Modern dark studio console, 5-language UI (EN default, AR, FR, ES, DE) |
 
 ## 🚀 Quickstart
 
