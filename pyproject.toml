@@ -1,0 +1,19 @@
+[project]
+name = "ssv-studio"
+version = "0.1.0"
+description = "SSV Studio — local-first open-source voice studio (TTS, cloning, STT, dubbing, audiobooks)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn>=0.29",
+  "python-multipart>=0.0.9",
+  "edge-tts>=0.14",
+  "gTTS>=2.5",
+  "pyttsx3>=2.90",
+  "deep-translator>=1.11",
+  "pydub>=0.25",
+]
+
+[tool.vercel]
+entrypoint = "backend.main:app"

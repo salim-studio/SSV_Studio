@@ -7,7 +7,12 @@ import tempfile
 import os
 import uuid
 
-OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "outputs")
+_BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if os.getenv("VERCEL"):
+    # Vercel serverless filesystem is read-only except /tmp
+    OUTPUT_DIR = os.path.join(tempfile.gettempdir(), "ssv_outputs")
+else:
+    OUTPUT_DIR = os.path.join(_BASE, "outputs")
 
 
 def _out(ext: str) -> str:

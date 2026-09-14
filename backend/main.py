@@ -17,7 +17,12 @@ from backend.engines.voice_engines import (
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND = os.path.join(BASE, "frontend")
-OUTPUTS = os.path.join(BASE, "outputs")
+if os.getenv("VERCEL"):
+    # Vercel serverless filesystem is read-only except /tmp;
+    # must match OUTPUT_DIR in backend/engines/voice_engines.py
+    OUTPUTS = os.path.join(tempfile.gettempdir(), "ssv_outputs")
+else:
+    OUTPUTS = os.path.join(BASE, "outputs")
 os.makedirs(OUTPUTS, exist_ok=True)
 
 app = FastAPI(title="SSV Studio", description="Local-first open-source voice studio — TTS, cloning, transcription, dubbing & audiobooks")
